@@ -1,0 +1,29 @@
+header {
+  position: absolute;
+  z-index: 8;
+  height: 120px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 88px;
+  @media (max-width: 768px) {
+    padding: 0 32px;
+  }
+
+  a {
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
+
+  .hamburger-menu {
+    cursor: pointer;
+    span {
+      width: 30px;
+      height: 3px;
+      margin: 6px;
+      background-color: $text;
+      display: block;
+    }
+  }
+}
