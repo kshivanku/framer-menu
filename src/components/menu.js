@@ -40,7 +40,7 @@ const maskAnimation = {
   },
 }
 
-const Menu = ({ menuState, setMenuState, x, y }) => {
+const Menu = ({ menuState, setMenuState, x, y, setCursorHovered }) => {
   return (
     <AnimatePresence>
       {menuState && (
@@ -52,7 +52,12 @@ const Menu = ({ menuState, setMenuState, x, y }) => {
             className="products"
           >
             <div className="menu-title">Products</div>
-            <div onClick={() => setMenuState(false)} className="close">
+            <div
+              onClick={() => setMenuState(false)}
+              className="close"
+              onMouseEnter={() => setCursorHovered(true)}
+              onMouseLeave={() => setCursorHovered(false)}
+            >
               <Close />
             </div>
             <div className="menu">
@@ -65,7 +70,13 @@ const Menu = ({ menuState, setMenuState, x, y }) => {
                     exit="exit"
                   >
                     {data.map(product => (
-                      <List key={product.id} product={product} x={x} y={y} />
+                      <List
+                        key={product.id}
+                        product={product}
+                        x={x}
+                        y={y}
+                        setCursorHovered={setCursorHovered}
+                      />
                     ))}
                   </motion.ul>
                 </div>
@@ -79,7 +90,7 @@ const Menu = ({ menuState, setMenuState, x, y }) => {
   )
 }
 
-const List = ({ product, x, y }) => {
+const List = ({ product, x, y, setCursorHovered }) => {
   const [hoverState, setHoverState] = useState(false)
   const [listPosition, setListPosition] = useState({ top: 0, left: 0 })
   let list = useRef()
@@ -102,8 +113,14 @@ const List = ({ product, x, y }) => {
           </div>
 
           <motion.div
-            onHoverStart={() => setHoverState(true)}
-            onHoverEnd={() => setHoverState(false)}
+            onHoverStart={() => {
+              setHoverState(true)
+              setCursorHovered(true)
+            }}
+            onHoverEnd={() => {
+              setHoverState(false)
+              setCursorHovered(false)
+            }}
             className="title"
           >
             <h2>

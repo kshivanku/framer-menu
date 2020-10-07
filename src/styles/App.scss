@@ -124,3 +124,15 @@ ul {
     max-width: 100% !important;
   }
 }
+
+.cursor {
+  cursor: pointer;
+  height: 2rem;
+  width: 2rem;
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  background-color: #e7dede;
+  border-radius: 100%;
+  pointer-events: none;
+}
